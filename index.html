@@ -11,7 +11,7 @@
   </head>
   <body>
     <nav>
-      <h1>- Sorting Visualizer -</h1>
+      <h1>Sorting Visualizer</h1>
       <div class="innerNav">
         <div class="speedTracker"><span>Array Size</span>---------------</div>
       <div class="arraySize"><span>Speed</span>---------------</div>
@@ -20,13 +20,14 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="#000"><path d="M0 0v100c166.7 0 166.7-66 333.3-66S500 77 666.7 77 833.3 28 1000 28V0H0Z" opacity=".5"></path><path d="M0 0v100c166.7 0 166.7-66 333.3-66S500 70 666.7 70 833.3 16 1000 16V0H0Z" opacity=".5"></path><path d="M0 0v100c166.7 0 166.7-66 333.3-66S500 63 666.7 63 833.3 4 1000 4V0H0Z"></path></svg>
     <div class="sideBar">
       <ul>
-        <li>Selection Sort</li>
-        <li>Bubble Sort</li>
-        <li>Quick Sort</li>
-        <li>Merge Sort</li>
+        <li class="active algorithm">Selection Sort</li>
+        <li class="algorithm">Bubble Sort</li>
+        <li class="algorithm">Quick Sort</li>
+        <li class="algorithm">Merge Sort</li>
+        <li id="play">Play</li>
       </ul>
       </div>
     </div>
-    <script src="script.js" async defer></script>
+    <script src="app.js" async defer></script>
   </body>
 </html>
