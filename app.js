@@ -18,10 +18,7 @@ const getRandom = function () {
 console.log(document.querySelector(".arraySize"));
 
 function generateArray(value) {
-  let globalArray = [];
-  while (globalArray.length !== value) {
-    globalArray.push(getRandom());
-  }
+  const globalArray = Array.from({ length: value }, () => getRandom());
   adjustBars(globalArray);
   return globalArray;
 }
@@ -57,3 +54,22 @@ function adjustBars(array) {
     bars[i].innerText = array[i] + "%";
   }
 }
+
+const rangeInputs = document.querySelectorAll(".rangeInput");
+const sliderValue = document.querySelector(".sliderValue");
+const slider = document.querySelector(".slider");
+
+rangeInputs[1].addEventListener("input", function () {
+  let rangeInputValue = rangeInputs[1].value;
+  if (rangeInputValue >= 10) {
+    sliderValue.style.left = "4px";
+    sliderValue.style.top = "9px";
+  } else {
+    sliderValue.style.left = "7px";
+    sliderValue.style.top = "12px";
+  }
+  sliderValue.innerText = rangeInputValue;
+  slider.style.left = (rangeInputValue / rangeInputs[1].max) * 70 + "%";
+
+  generateArray(rangeInputValue);
+});
