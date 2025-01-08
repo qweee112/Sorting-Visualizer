@@ -1,7 +1,6 @@
 import { bubbleSort, selectionSort } from "./sorting.js";
 
 const listItems = document.querySelectorAll(".algorithm");
-const bars = document.querySelectorAll(".bar");
 
 listItems.forEach((li) => {
   li.addEventListener("click", function () {
@@ -21,29 +20,40 @@ console.log(document.querySelector(".arraySize"));
 function generateArray(value) {
   let globalArray = [];
   while (globalArray.length !== value) {
-    globalArray.push(Math.trunc(Math.random() * 100 + 1));
+    globalArray.push(getRandom());
   }
   adjustBars(globalArray);
   return globalArray;
 }
 
 function adjustBars(array) {
+  const barContainer = document.querySelector(".barContainer");
+  let bars = document.querySelectorAll(".bar");
   const barsLength = bars.length;
   const arrayLength = array.length;
-  for (let i = 0; i < arrayLength; i++) {
-    if (barsLength !== arrayLength) {
-      for (
-        let j = 0;
-        j <
-        (arrayLength > barsLength
-          ? arrayLength - barsLength
-          : barsLength - arrayLength);
-        j++
-      ) {
-        document.querySelector(".barContainer").createDiv(".bar");
-      }
+
+  // Adjust the number of bars
+  if (barsLength < arrayLength) {
+    // Add bars
+    for (let j = 0; j < arrayLength - barsLength; j++) {
+      const newBar = document.createElement("div");
+      newBar.classList.add("bar");
+      newBar.setAttribute("id", `bar-${barsLength + j}`);
+      barContainer.appendChild(newBar);
     }
-    document.querySelectorAll(".bar")[i].style.height = array[i];
-    document.querySelectorAll(".bar")[i].innerText = array[i] + "%";
+  } else if (barsLength > arrayLength) {
+    // Remove excess bars
+    for (let j = 0; j < barsLength - arrayLength; j++) {
+      bars[barsLength - 1 - j].remove();
+    }
+  }
+
+  // Update the `bars` NodeList after adjustments
+  bars = document.querySelectorAll(".bar");
+
+  // Update bar styles and text
+  for (let i = 0; i < arrayLength; i++) {
+    bars[i].style.height = array[i] + "%";
+    bars[i].innerText = array[i] + "%";
   }
 }

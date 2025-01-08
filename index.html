@@ -11,17 +11,19 @@
   </head>
   <body>
     <nav>
-      <h1>Sorting Visualizer</h1>
+      <h1>Algorithm Visualizer</h1>
       <div class="innerNav">
         <div class="speedTracker"><span>Array Size</span>---------------</div>
-        <div class="arraySize">
-          <label>Array Size: </label>
-          <select name="arraySize" id="arraySize">
-            <option value="5">5</option>
-            <option value="10">10</option>
-          </select>
+        <div class="range">
+          <div class="field">
+            <div class="value left">0</div>
+            <input type="range" min="0" max="10" value="5" steps="1">
+            <div class="value right">10</div>
+          </div>
+          <div class="sliderValue">
+            <span>5</span>
+          </div>
         </div>
-      </div>
     </nav>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="#000">
       <path
@@ -49,11 +51,6 @@
       <button id="pause">Pause</button>
     </div>
     <div class="barContainer">
-      <div class="bar"><span>60%</span></div>
-      <div class="bar"><span>60%</span></div>
-      <div class="bar"><span>60%</span></div>
-      <div class="bar"><span>60%</span></div>
-      <div class="bar"><span>60%</span></div>
     </div>
     <div class="footer"></div>
     <script type="module" src="app.js" async defer></script>
