@@ -36,3 +36,31 @@ export function selectionSort(array) {
   }
   return array;
 }
+
+ export const swap = (array, i, j) => {
+  // array[i], array[j] = array[j], array[i]
+  let temp = array[i];
+  array[i] = array[j];
+  array[j] = temp;
+}
+
+export const partition = (array, low, high) => {
+  let pivot  = array[high];
+  let i = low - 1;
+  for (let j = low; j <= high; j++) {
+    if (array[j] <= pivot) {
+      i++; 
+      swap(array, i, j);
+    }  
+  }
+  return i
+}
+
+export function quickSort(array, low, high) {
+  if (low < high) {
+    let subPivot = partition(array, low, high)
+    quickSort(array, low, subPivot - 1)
+    quickSort(array, subPivot + 1, high)
+  }
+  return array
+}
