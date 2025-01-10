@@ -1,4 +1,4 @@
-import { bubbleSort, selectionSort, quickSort } from "./sorting.js";
+import { bubbleSort, selectionSort, quickSort, mergeSort } from "./sorting.js";
 
 const listItems = document.querySelectorAll(".algorithm");
 
@@ -73,8 +73,19 @@ rangeInputs[1].addEventListener("input", function () {
 
   generateArray(rangeInputValue);
 });
-const bigArray = [45, 23, 78, 12, 56, 90, 1, 5, 3, 88, 99, 65, 34, 67, 89, 24, 17, 81, 43, 29, 76, 53, 62, 49, 19, 95, 4, 7, 6, 50];
-const lowValue = 0; // Start index of the array
-const highValue = bigArray.length - 1; // End index of the array
 
-console.log(quickSort(bigArray, lowValue, highValue));
+const algorithms = document.querySelectorAll(".algorithm");
+
+algorithms.forEach((algo) => {
+  algo.addEventListener("click", function (event) {
+    const algorithm = event.target.innerHTML;
+    const bars = document.querySelectorAll(".bar");
+    if (algorithm === "Selection Sort") {
+      selectionSort(bars);
+    } else if (algorithm === "Bubble Sort") {
+      bubbleSort(bars);
+    } else if (algorithm === "Quick Sort") {
+    } else if (algorithm === "Merge Sort") {
+    }
+  });
+});

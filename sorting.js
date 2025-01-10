@@ -8,9 +8,7 @@ export function bubbleSort(array) {
       ) {
         console.log(parseInt(array[i].style.height));
         swapped = true;
-        const temp = array[i].style.height;
-        array[i].style.height = array[i + 1].style.height;
-        array[i + 1].style.height = temp;
+        swap(array, i, i + 1);
       }
     }
   }
@@ -37,30 +35,57 @@ export function selectionSort(array) {
   return array;
 }
 
- export const swap = (array, i, j) => {
-  // array[i], array[j] = array[j], array[i]
-  let temp = array[i];
-  array[i] = array[j];
-  array[j] = temp;
+export function swap(array, i, j) {
+  let temp = array[i].style.height;
+  array[i].style.height = array[j].style.height;
+  array[j].style.height = temp;
 }
 
-export const partition = (array, low, high) => {
-  let pivot  = array[high];
-  let i = low - 1;
-  for (let j = low; j <= high; j++) {
+export function partition(array, lowest, highest) {
+  let pivot = array[highest];
+  let i = lowest - 1;
+
+  for (let j = lowest; j <= highest; j++) {
     if (array[j] <= pivot) {
-      i++; 
+      i++;
       swap(array, i, j);
-    }  
+    }
   }
-  return i
+  return i;
 }
 
-export function quickSort(array, low, high) {
-  if (low < high) {
-    let subPivot = partition(array, low, high)
-    quickSort(array, low, subPivot - 1)
-    quickSort(array, subPivot + 1, high)
+export function quickSort(array, lowest, highest) {
+  if (lowest < highest) {
+    let newPivot = partition(array, lowest, highest);
+    quickSort(array, lowest, newPivot - 1);
+    quickSort(array, newPivot + 1, highest);
   }
-  return array
+  return array;
+}
+
+const bigArray = [
+  45, 23, 78, 12, 56, 90, 1, 5, 3, 88, 99, 65, 34, 67, 89, 24, 17, 81, 43, 29,
+  76, 53, 62, 49, 19, 95, 4, 7, 6, 50,
+];
+
+export function merge(leftArray, rightArray) {
+  const sortedArray = [];
+  while (leftArray.length && rightArray.length) {
+    leftArray[0] <= rightArray[0]
+      ? sortedArray.push(leftArray.shift())
+      : sortedArray.push(rightArray.shift());
+  }
+  return [...sortedArray, ...leftArray, ...rightArray];
+}
+
+export function mergeSort(array) {
+  if (array.length < 2) return array;
+
+  const mid = Math.floor(array.length / 2);
+  console.log(mid);
+
+  const leftArray = array.slice(0, mid);
+  const rightArray = array.slice(mid);
+
+  return merge(mergeSort(leftArray), mergeSort(rightArray));
 }
