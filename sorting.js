@@ -1,4 +1,7 @@
-export function bubbleSort(array) {
+
+const speed = document.querySelector("#speed")
+
+export async function bubbleSort(array) {
   let swapped = true;
   while (swapped) {
     swapped = false;
@@ -6,31 +9,47 @@ export function bubbleSort(array) {
       if (
         parseInt(array[i].style.height) > parseInt(array[i + 1].style.height)
       ) {
-        console.log(parseInt(array[i].style.height));
+        array[i].style.backgroundColor = "red";
+        array[i + 1].style.backgroundColor = "red";
+
         swapped = true;
         swap(array, i, i + 1);
+        
+        await new Promise((resolve) => setTimeout(resolve, 500 / speed.value)); 
+
+        array[i].style.backgroundColor = "var(--blue)";
+        array[i + 1].style.backgroundColor = "var(--blue)";
       }
     }
   }
   return array;
 }
 
-export function selectionSort(array) {
+export async function selectionSort(array) {
   let index;
   let smallest;
   for (let i = 0; i < array.length - 1; i++) {
     index = i;
-    smallest = parseInt(array[i].style.height);
+    smallest = array[i];
+    
     for (let j = i; j < array.length - 1; j++) {
-      if (smallest < parseInt(array[j + 1].style.height)) {
+      array[j].style.backgroundColor = "red";
+      await new Promise((resolve) => setTimeout(resolve, 500)); 
+      array[j].style.backgroundColor = "var(--blue)";
+      smallest.style.backgroundColor = "green";
+      if (parseInt(smallest.style.height) < parseInt(array[j + 1].style.height)) {
         continue;
       } else {
+        smallest.style.backgroundColor = "var(--blue)";
         index = j + 1;
-        smallest = parseInt(array[j + 1].style.height);
+        smallest = array[j + 1];
+        smallest.style.backgroundColor = "green";
       }
     }
+    smallest.style.backgroundColor = "var(--blue)"
+  let temp = smallest.style.height;
     array[index].style.height = array[i].style.height;
-    array[i].style.height = smallest + "%";
+    array[i].style.height = temp;
   }
   return array;
 }

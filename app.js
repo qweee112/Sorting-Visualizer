@@ -75,17 +75,33 @@ rangeInputs[1].addEventListener("input", function () {
 });
 
 const algorithms = document.querySelectorAll(".algorithm");
+let currentAlgorithm;
 
 algorithms.forEach((algo) => {
   algo.addEventListener("click", function (event) {
     const algorithm = event.target.innerHTML;
-    const bars = document.querySelectorAll(".bar");
     if (algorithm === "Selection Sort") {
-      selectionSort(bars);
+      currentAlgorithm = "selectionSort";
     } else if (algorithm === "Bubble Sort") {
-      bubbleSort(bars);
+      currentAlgorithm = "bubbleSort";
     } else if (algorithm === "Quick Sort") {
+      currentAlgorithm = "quickSort"
     } else if (algorithm === "Merge Sort") {
+      currentAlgorithm = "mergeSort"
     }
+    console.log(currentAlgorithm);
+    
   });
 });
+
+document.querySelector("#play").addEventListener("click", () => {
+  const bars = document.querySelectorAll(".bar");
+  switch(currentAlgorithm) {
+    case "selectionSort":
+      selectionSort(bars)
+    case "bubbleSort":
+      bubbleSort(bars)
+    case "quickSort":
+    case "mergeSort":
+  }
+})
