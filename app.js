@@ -1,5 +1,4 @@
-import { selectionSort, quickSort, mergeSort, bubbleSort } from "./sorting.js";
-
+import { selectionSort, quickSort, mergeSort, bubbleSort, timer } from "./helpers.js";
 
 const listItems = document.querySelectorAll(".algorithm");
 
@@ -96,14 +95,14 @@ algorithms.forEach((algo) => {
 });
 
 document.querySelector("#play").addEventListener("click", () => {
+  timer()
   const bars = document.querySelectorAll(".bar");
-  if ( currentAlgorithm === "selectionSort") {
-    selectionSort(bars)
-  } else if ( currentAlgorithm === "bubbleSort") {
-    bubbleSort(bars)
-  } else if ( currentAlgorithm === "quickSort") {
-
-  } else if ( currentAlgorithm === "mergeSort") {
-
+  if (currentAlgorithm === "selectionSort") {
+    selectionSort(bars);
+  } else if (currentAlgorithm === "bubbleSort") {
+    bubbleSort(bars);
+  } else if (currentAlgorithm === "quickSort") {
+    quickSort(bars, 0, bars.length - 1)
+  } else if (currentAlgorithm === "mergeSort") {
   }
 });
