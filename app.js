@@ -1,4 +1,5 @@
-import { bubbleSort, selectionSort, quickSort, mergeSort } from "./sorting.js";
+import { selectionSort, quickSort, mergeSort, bubbleSort } from "./sorting.js";
+
 
 const listItems = document.querySelectorAll(".algorithm");
 
@@ -60,6 +61,7 @@ const sliderValue = document.querySelector(".sliderValue");
 const slider = document.querySelector(".slider");
 
 rangeInputs[1].addEventListener("input", function () {
+  slider.style.visibility = "visible";
   let rangeInputValue = rangeInputs[1].value;
   if (rangeInputValue >= 10) {
     sliderValue.style.left = "4px";
@@ -75,7 +77,7 @@ rangeInputs[1].addEventListener("input", function () {
 });
 
 const algorithms = document.querySelectorAll(".algorithm");
-let currentAlgorithm;
+let currentAlgorithm = "selectionSort";
 
 algorithms.forEach((algo) => {
   algo.addEventListener("click", function (event) {
@@ -85,23 +87,23 @@ algorithms.forEach((algo) => {
     } else if (algorithm === "Bubble Sort") {
       currentAlgorithm = "bubbleSort";
     } else if (algorithm === "Quick Sort") {
-      currentAlgorithm = "quickSort"
+      currentAlgorithm = "quickSort";
     } else if (algorithm === "Merge Sort") {
-      currentAlgorithm = "mergeSort"
+      currentAlgorithm = "mergeSort";
     }
     console.log(currentAlgorithm);
-    
   });
 });
 
 document.querySelector("#play").addEventListener("click", () => {
   const bars = document.querySelectorAll(".bar");
-  switch(currentAlgorithm) {
-    case "selectionSort":
-      selectionSort(bars)
-    case "bubbleSort":
-      bubbleSort(bars)
-    case "quickSort":
-    case "mergeSort":
+  if ( currentAlgorithm === "selectionSort") {
+    selectionSort(bars)
+  } else if ( currentAlgorithm === "bubbleSort") {
+    bubbleSort(bars)
+  } else if ( currentAlgorithm === "quickSort") {
+
+  } else if ( currentAlgorithm === "mergeSort") {
+
   }
-})
+});

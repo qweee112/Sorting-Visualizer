@@ -81,7 +81,8 @@ nav h1 {
 
 .sideBar li,
 #play,
-#pause {
+#pause,
+#stop {
   padding: 10px 20px;
   border-radius: 30px;
   border: 7px solid var(--white);
@@ -136,12 +137,12 @@ li:not(.active) {
   height: 60vh;
   display: flex;
   align-items: flex-end;
-  gap: 20px;
+  gap: 1px;
   margin-bottom: 30px;
 }
 
 .bar {
-  width: 40px;
+  width: 35px;
   height: 100%;
   background-color: var(--blue);
   display: flex;
@@ -155,7 +156,7 @@ li:not(.active) {
 
 .footer {
   position: absolute;
-  width: 80%;
+  width: 90%;
   height: 30px;
   bottom: 0;
   background-color: black;
@@ -173,7 +174,8 @@ li:not(.active) {
 }
 
 #play:hover,
-#pause:hover {
+#pause:hover,
+#stop:hover {
   transform: scale(1.1);
 }
 
@@ -194,16 +196,24 @@ li:not(.active) {
   gap: 10px;
 }
 
+.sliderRange {
+  width: 93%;
+  background-color: aqua;
+  position: relative;
+  margin: 0 auto;
+}
+
 .slider {
   width: 35px;
   height: 35px;
   background-color: var(--blue);
-  position: relative;
+  position: absolute;
   top: 20px;
   left: 0%;
   border-radius: 50% 0 50% 50%;
   transform: rotate(-45deg);
   border: 2px solid white;
+  visibility: hidden;
 }
 
 .slider div {
