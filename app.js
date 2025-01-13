@@ -7,7 +7,7 @@ listItems.forEach((li) => {
     listItems.forEach((li) => {
       li.style.backgroundColor = "var(--darkBlue)";
     });
-    li.style.backgroundColor = "var(--blue)";
+    li.style.backgroundColor = "black";
   });
 });
 
@@ -22,7 +22,7 @@ function generateArray(value) {
   adjustBars(globalArray);
   return globalArray;
 }
-
+  
 function adjustBars(array) {
   const barContainer = document.querySelector(".barContainer");
   let bars = document.querySelectorAll(".bar");
@@ -96,13 +96,30 @@ algorithms.forEach((algo) => {
 
 document.querySelector("#play").addEventListener("click", () => {
   timer()
+  const barContainer = document.querySelector(".barContainer");
+  const mergeSortContainer = document.querySelector(".mergeSortContainer");
   const bars = document.querySelectorAll(".bar");
-  if (currentAlgorithm === "selectionSort") {
+
+  let hello = Array.from(bars);
+   if (currentAlgorithm === "selectionSort") {
     selectionSort(bars);
   } else if (currentAlgorithm === "bubbleSort") {
     bubbleSort(bars);
   } else if (currentAlgorithm === "quickSort") {
     quickSort(bars, 0, bars.length - 1)
   } else if (currentAlgorithm === "mergeSort") {
+    // Initializing array from bars
+    let newBars = Array.from(bars);
+
+    bars.forEach((bar) => {
+      mergeSortContainer.appendChild(bar)
+    })
+    // Finish the implementation of merge sort by appending each child to the parent elelment bars
+    newBars = mergeSort(newBars);
+
+    /*mergeSortContainer.querySelectorAll(".bar").forEach((bar) => {
+      bar.remove()
+    })*/
+
   }
 });

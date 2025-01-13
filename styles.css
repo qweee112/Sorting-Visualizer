@@ -116,7 +116,7 @@ li::after {
 }
 
 .active {
-  background-color: var(--blue);
+  background-color: black;
 }
 
 li:not(.active) {
@@ -132,13 +132,21 @@ li:not(.active) {
   left: 77.5%;
 }
 
-.barContainer {
+.barContainer, .mergeSortContainer {
   width: auto;
   height: 60vh;
   display: flex;
   align-items: flex-end;
   gap: 1px;
   margin-bottom: 30px;
+}
+
+.mergeSortContainer {
+  height: 30vh;
+  left: 5%;
+  top: 20%;
+  font-size: 9px;
+  position: absolute;
 }
 
 .bar {
@@ -152,6 +160,10 @@ li:not(.active) {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   transition: 0.5s;
+}
+
+.mergeSortContainer .bar {
+  width: 15px;
 }
 
 .footer {

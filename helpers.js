@@ -42,28 +42,27 @@ export const timer = async () => {
   sec.innerText = "00";
 
   while (!stopTimer) {
-
-    if (sec.innerText === '60') {
+    if (sec.innerText === "60") {
       currentMinutes++;
-      min.innerText = '0' + currentMinutes;
       currentSeconds = 0;
+      min.innerText = "0" + currentMinutes;
     }
     await new Promise((resolve) => setTimeout(resolve, 1000 / speed.value));
 
     if (stop) {
       min.innerText = "00";
       sec.innerText = "00";
-      return
+      return;
     }
     if (isPaused) await pauseLoop();
 
     currentSeconds++;
-    currentSeconds < 10 ? sec.innerText = ('0' + currentSeconds) : sec.innerText = currentSeconds;
+    currentSeconds < 10
+      ? (sec.innerText = "0" + currentSeconds)
+      : (sec.innerText = currentSeconds);
   }
-  return [currentMinutes, currentSeconds]
-}
-
-
+  return [currentMinutes, currentSeconds];
+};
 
 export async function bubbleSort(array) {
   playBtn.disabled = true;
@@ -71,7 +70,10 @@ export async function bubbleSort(array) {
   while (swapped) {
     swapped = false;
     for (let i = 0; i < array.length - 1; i++) {
-      if (stop) {playBtn.disabled = false; return;} 
+      if (stop) {
+        playBtn.disabled = false;
+        return;
+      }
       if (isPaused) await pauseLoop();
 
       if (
@@ -131,7 +133,7 @@ export async function selectionSort(array) {
 
     array[index].innerText = array[i].innerText;
     array[i].innerText = temp[1];
-    
+
     array[index].style.height = array[i].style.height;
     array[i].style.height = temp[0];
   }
@@ -155,9 +157,8 @@ export async function partition(array, lowest, highest) {
   let i = lowest - 1;
 
   for (let j = lowest; j <= highest; j++) {
-    if (stop) return;
+    if (stop)  return;
     if (isPaused) await pauseLoop();
-    
 
     if (parseInt(array[j].style.height) <= parseInt(pivot)) {
       i++;
@@ -165,9 +166,9 @@ export async function partition(array, lowest, highest) {
     }
     if (array[i]) array[i].style.backgroundColor = "green";
     array[j].style.backgroundColor = "red";
-    
+
     await new Promise((resolve) => setTimeout(resolve, 500 / speed.value));
-    
+
     if (array[i]) array[i].style.backgroundColor = "var(--blue)";
     array[j].style.backgroundColor = "var(--blue)";
   }
@@ -187,9 +188,8 @@ export async function quickSort(array, lowest, highest) {
 export function merge(leftArray, rightArray) {
   const sortedArray = [];
   while (leftArray.length && rightArray.length) {
-    leftArray[0] <= rightArray[0]
-      ? sortedArray.push(leftArray.shift())
-      : sortedArray.push(rightArray.shift());
+    parseInt(leftArray[0].style.height) <= parseInt(rightArray[0].style.height) 
+    ? sortedArray.push(leftArray.shift()) : sortedArray.push(rightArray.shift());
   }
   return [...sortedArray, ...leftArray, ...rightArray];
 }
@@ -198,10 +198,13 @@ export function mergeSort(array) {
   if (array.length < 2) return array;
 
   const mid = Math.floor(array.length / 2);
-  console.log(mid);
-
+  array[mid].style.backgroundColor = "green";
+  console.log(array);
+  
   const leftArray = array.slice(0, mid);
   const rightArray = array.slice(mid);
+  console.log(leftArray, rightArray);
+  
 
-  return merge(mergeSort(leftArray), mergeSort(rightArray));
+  // return merge(mergeSort(leftArray), mergeSort(rightArray));
 }
