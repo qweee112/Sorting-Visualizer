@@ -94,11 +94,11 @@ algorithms.forEach((algo) => {
   });
 });
 
-document.querySelector("#play").addEventListener("click", () => {
+document.querySelector("#play").addEventListener("click", async () => {
   timer()
   const barContainer = document.querySelector(".barContainer");
   const mergeSortContainer = document.querySelector(".mergeSortContainer");
-  const bars = document.querySelectorAll(".bar");
+  const bars = barContainer.querySelectorAll(".bar");
 
   let hello = Array.from(bars);
    if (currentAlgorithm === "selectionSort") {
@@ -114,12 +114,14 @@ document.querySelector("#play").addEventListener("click", () => {
     bars.forEach((bar) => {
       mergeSortContainer.appendChild(bar)
     })
+    
     // Finish the implementation of merge sort by appending each child to the parent elelment bars
     newBars = mergeSort(newBars);
-
-    /*mergeSortContainer.querySelectorAll(".bar").forEach((bar) => {
-      bar.remove()
-    })*/
-
+    console.log(newBars.length);
+    
+    for (let i = 0; i < newBars.length; i++) {
+      await new Promise((resolve) => setTimeout(resolve, 500 / speed.value));
+      barContainer.appendChild(newBars[i])
+    }
   }
 });

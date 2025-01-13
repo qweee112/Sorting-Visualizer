@@ -178,33 +178,34 @@ export async function partition(array, lowest, highest) {
 export async function quickSort(array, lowest, highest) {
   if (lowest < highest) {
     let newPivot = await partition(array, lowest, highest);
-    quickSort(array, lowest, newPivot - 1);
-    quickSort(array, newPivot + 1, highest);
+     quickSort(array, lowest, newPivot - 1);
+     quickSort(array, newPivot + 1, highest);
   }
   stopTimer = true;
   return array;
 }
 
 export function merge(leftArray, rightArray) {
+  // const barContainer = document.querySelector(".barContainer")
   const sortedArray = [];
   while (leftArray.length && rightArray.length) {
-    parseInt(leftArray[0].style.height) <= parseInt(rightArray[0].style.height) 
-    ? sortedArray.push(leftArray.shift()) : sortedArray.push(rightArray.shift());
+    parseInt(leftArray[0].style.height) <= parseInt(rightArray[0].style.height) ? sortedArray.push(leftArray.shift()) : sortedArray.push(rightArray.shift());
+    
   }
+  
   return [...sortedArray, ...leftArray, ...rightArray];
 }
 
 export function mergeSort(array) {
-  if (array.length < 2) return array;
+  if (array.length < 2) {stopTimer = true; return array;} 
 
   const mid = Math.floor(array.length / 2);
-  array[mid].style.backgroundColor = "green";
-  console.log(array);
+  // console.log(array);
   
   const leftArray = array.slice(0, mid);
   const rightArray = array.slice(mid);
-  console.log(leftArray, rightArray);
+  // console.log(leftArray, rightArray);
   
 
-  // return merge(mergeSort(leftArray), mergeSort(rightArray));
+  return merge(mergeSort(leftArray), mergeSort(rightArray));
 }
